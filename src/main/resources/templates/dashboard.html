@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        button {
+            font-family: "Asap", sans-serif;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            width: 100%;
+            border: 0;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 25px;
+            background-color: #4ca1af;
+            transition: background-color 300ms;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Welcome, <span th:text="${studentName}">Student</span>!</h2>
+    <p>Email: <span th:text="${studentEmail}">student@example.com</span></p>
+
+    <h3>Your Courses and Grades</h3>
+    <table border="1">
+        <tr>
+            <th>Course</th>
+            <th>Your Grade</th>
+            <th>Course Average</th>
+            <th>Your Rank</th>
+        </tr>
+        <tr th:each="enrollment : ${enrollments}">
+            <td th:text="${enrollment.grade}">Grade</td>
+<!--            <td th:text="${enrollment.course.course_name}">Course Name</td>-->
+<!--            <td th:text="${#strings.format('%.2f', enrollment.courseAvg)}">Course Average</td>-->
+<!--            <td th:text="${enrollment.studentRank}">Student Rank</td>-->
+        </tr>
+    </table>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</div>
+
+</body>
+</html>
